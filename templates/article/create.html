@@ -1,0 +1,66 @@
+{% extends "base.html" %} {% load static %}
+<!-- base.html 中定義的 title -->
+{% block title %} 發表文章 {% endblock title %}
+<!-- base.html 中定義的 content -->
+{% block content %}
+<!-- 寫文章表單 -->
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <br>
+            <!-- 提交文章的表單 -->
+            <form method="post" action="." enctype="multipart/form-data">
+                <!-- Django中需要POST地方都必要有csrf_token -->
+                {% csrf_token %}
+
+                <!-- 文章標題圖 -->
+                <div class="form-group">
+                    <label for="avatar">標題圖
+                    </label>
+                    <input type="file" class="form-control-file" name="avatar" id="avatar">
+                </div>
+
+                <!-- 文章標題 -->
+                <div class="form-group">
+                    <!-- 標籤 -->
+                    <label for="title">文章標題</label>
+                    <!-- 文本框 -->
+                    <input type="text" class="form-control" id="title" name="title">
+                </div>
+                <!-- 文章欄目 -->
+                <div class="form-group">
+                    <label for="column">欄目</label>
+                    <select class="form-control" 
+                            id="column" 
+                            name="column"
+                    >
+                            <option value="none">請選擇欄目..</option>
+                        {% for column in columns %}
+                            <option value="{{ column.id }}">{{ column }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- 文章標籤 -->
+                <div class="form-group">
+                    <label for="tags">標籤</label>
+                    <input type="text" 
+                            class="form-control col-3" 
+                            id="tags" 
+                            name="tags"
+                    >
+                </div>
+
+                <!-- 文章內容 -->
+                <div class="form-group">
+                    <label for="body">文章內容</label>
+                    <!-- 文本區 -->
+                    <textarea type="text" class="form-control" id="body" name="body" rows="12"></textarea>
+                </div>
+                <!-- 提交按鈕 -->
+                <button type="submit" class="btn btn-primary">發布</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

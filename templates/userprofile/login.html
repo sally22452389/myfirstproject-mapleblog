@@ -1,0 +1,34 @@
+{% extends "base.html" %} {% load static %}
+{% block title %} 登錄 {% endblock title %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <br>
+            <h5>還沒有帳號？</h5>
+            <h5>開始<a href='{% url "userprofile:register" %}'>註冊帳號</a>加入我們吧！</h5>
+            <br>
+            <form method="post" action=".">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="username">帳號</label>
+                    <input type="text" class="form-control" id="username" name="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">密碼</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <button type="submit" class="btn btn-primary">登入</button>
+            </form>
+
+            <br>
+            <h5>忘記密碼了？</h5>
+            <h5>  <a href='{% url "password_reset_recover" %}'>重置密碼</a>  </h5>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

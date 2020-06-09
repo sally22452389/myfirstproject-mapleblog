@@ -1,0 +1,61 @@
+<button type="button" id="BackTop" class="toTop-arrow" style="z-index: 100;"></button>
+
+<script>
+    // 向上滾動的函數
+    $(function () {
+        $('#BackTop').click(function () {
+            $('html,body').animate({scrollTop: 0}, 200);
+        });
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 300) {
+                $('#BackTop').fadeIn(300);
+            } else {
+                $('#BackTop').stop().fadeOut(300);
+            }
+        }).scroll();
+    });
+</script>
+
+<style>
+    /* 按鈕邊框的大小、位置、樣式 */
+    .toTop-arrow {
+        width: 3.5rem;
+        height: 3.5rem;
+        padding: 1;
+        margin: 1;
+        border: 0;
+        border-radius: 20%;
+        opacity: 0.6;
+        background: black;
+        cursor: pointer;
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        display: none;
+    }
+
+    /* 繪製按鈕中的向上箭頭 */
+    .toTop-arrow::before, .toTop-arrow::after {
+        width: 31px;
+        height: 7px;
+        border-radius: 3px;
+        background: DEEPSKYBLUE;
+        position: absolute;
+        content: "";
+    }
+
+    .toTop-arrow::before {
+        transform: rotate(-45deg) translate(0, -50%);
+        left: 0.4rem;
+    }
+
+    .toTop-arrow::after {
+        transform: rotate(45deg) translate(0, -50%);
+        right: 0.4rem;
+    }
+
+    /* 取消點擊按鈕時的聚焦 */
+    .toTop-arrow:focus {
+        outline: none;
+    }
+</style>

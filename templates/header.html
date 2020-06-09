@@ -1,0 +1,88 @@
+<!-- import notifications tags -->
+{% load notifications_tags %}
+{% notifications_unread as unread_count %}
+<!-- 定義導航 -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+  
+      <!-- 導航主名 header -->
+      <a class="navbar-brand" href="{% url 'article:article_list' %}">Maple Blog</a>
+
+      <!-- 導航入口 -->
+
+      <div>
+        <ul class="navbar-nav">
+          <!-- 條目 -->
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'article:article_list' %}">文章列表</a>
+          <!-- Django的 if 模板語句 -->
+          {% if user.is_authenticated %}
+            <!-- 如果已經登錄，則顯示用戶名下拉框 -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <!-- 通知紅點 header -->
+                {% if unread_count %}
+                  <svg viewBox="0 0 8 8"
+                      width="8px"
+                      height="8px">
+                    <circle cx="4"
+                            cy="4"
+                            r="4"
+                            fill="#ff6b6b"
+                            ></circle>
+                  </svg>
+                {% endif %}
+                
+                {{ user.username }}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{% url "notice:list" %}">通知
+                  {% if unread_count %}
+                  <span class="badge badge-danger">{{ unread_count }}</span>
+                  {% endif %}
+                </a>
+                <a class="dropdown-item" href="{% url 'article:article_create' %}">發表文章</a>
+                <a class="dropdown-item" href='{% url "userprofile:edit" user.id %}'>個人訊息</a>
+                <a class="dropdown-item" href="#" onclick="user_delete()">刪除帳號</a>
+                <a class="dropdown-item" href='{% url "userprofile:logout" %}'>登出</a>
+              </div>
+            </li>
+          <!-- 如果未登錄，顯示 “登錄” -->
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_login' %}">登錄</a>
+            </li>                    
+          {% endif %}
+
+          </li>
+        </ul>
+      </div>
+  
+    </div>
+</nav>
+
+{% if user.is_authenticated %}
+<form 
+    style="display:none;" 
+    id="user_delete"
+    action="{% url 'userprofile:delete' user.id %}" 
+    method="POST"
+>
+{% csrf_token %}
+    <button type="submit">發送</button>
+</form>
+    <script>
+        function user_delete() {
+            // 調用layer彈窗組件
+            layer.open({
+                title: "確認刪除",
+                content: "確認刪除所有帳號資料嗎？",
+                yes: function(index, layero) {
+                    $('form#user_delete button').click();
+                    layer.close(index);
+                },
+            })
+        }
+    </script>
+{% endif %}
