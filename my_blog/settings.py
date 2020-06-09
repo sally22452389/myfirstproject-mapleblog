@@ -25,7 +25,7 @@ SECRET_KEY = 'my_1r%txueleo53kn-)9ez34xs4-n@x4@+kr4v1o^9a#bbdro6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['10.140.0.2']
+ALLOWED_HOSTS = ['34.80.28.255']
 
 
 AUTHENTICATION_BACKENDS = ( 
@@ -164,7 +164,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 
 EMAIL_HOST_USER = 'mapleblogforum@gmail.com'
 
-EMAIL_HOST_PASSWORD = 'eg77dgny'
+EMAIL_HOST_PASSWORD = '0925135300'
 # 發送郵件端口
 EMAIL_PORT = 587
 
