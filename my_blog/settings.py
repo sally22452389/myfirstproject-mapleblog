@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'my_1r%txueleo53kn-)9ez34xs4-n@x4@+kr4v1o^9a#bbdro6'
+SECRET_KEY = 'my'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -164,7 +164,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 
 EMAIL_HOST_USER = 'mapleblogforum@gmail.com'
 
-EMAIL_HOST_PASSWORD = '0925135300'
+EMAIL_HOST_PASSWORD = ''
 # 發送郵件端口
 EMAIL_PORT = 587
 
