@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'mptt',
     'notifications', # 通知
     'notice', # 公告
+    'gunicorn',
 ]
 
 # 設置站點
